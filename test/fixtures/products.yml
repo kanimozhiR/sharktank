@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: MyString
+  location: MyString
+  status: MyString
+  investors: MyString
+  kitna: MyString
+  social: one
+  company: one
+  episode: one
+
+two:
+  product: MyString
+  location: MyString
+  status: MyString
+  investors: MyString
+  kitna: MyString
+  social: two
+  company: two
+  episode: two

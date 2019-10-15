@@ -10,6 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_10_15_134433) do
 
+  create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+  end
+
+  create_table "episodes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "episode_name"
+    t.bigint "season_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["season_id"], name: "index_episodes_on_season_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "product"
+    t.string "location"
+    t.string "status"
+    t.string "investors"
+    t.string "kitna"
+    t.bigint "episode_id", null: false
+    t.bigint "company_id", null: false
+    t.index ["company_id"], name: "index_products_on_company_id"
+    t.index ["episode_id"], name: "index_products_on_episode_id"
+  end
+
+  create_table "seasons", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "season"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "socials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "social"
+    t.bigint "product_id", null: false
+    t.index ["product_id"], name: "index_socials_on_product_id"
+  end
+
+  add_foreign_key "episodes", "seasons"
+  add_foreign_key "products", "companies"
+  add_foreign_key "products", "episodes"
+  add_foreign_key "socials", "products"
 end
