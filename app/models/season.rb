@@ -1,3 +1,3 @@
 class Season < ApplicationRecord
- has_many :episode
+ has_many :episodes
 end
